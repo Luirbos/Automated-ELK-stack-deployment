@@ -11,12 +11,12 @@ Alternatively, select portions of the yml file may be used to install only certa
 https://github.com/Luirbos/Automated-ELK-stack-deployment/blob/main/Ansible/install-ELK.yml
 
 This document contains the following details:
-- Description of the Topologu
-- Access Policies
-- ELK Configuration
+  - Description of the Topologu
+  - Access Policies
+  - ELK Configuration
   - Beats in Use
   - Machines Being Monitored
-- How to Use the Ansible Build
+  - How to Use the Ansible Build
 
 
 ### Description of the Topology
@@ -54,9 +54,10 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box |     No              |(my public IP address)|
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box |     yes             |(my public IP address)|
+|  Web 1   |     no              |                      |
+|  Web 2   |     no              |                      |
+|  Web 3   |     no              |                      |
 
 ### Elk Configuration
 
@@ -85,6 +86,8 @@ Filebeat and Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+filebeat keeps track of changes to log files and log events.
+meticbeat monitors metric data and statistics.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -98,9 +101,10 @@ SSH into the control node and follow the steps below:
 
 - Run the playbook, and navigate to http://[kibana public IP]:5601 then click on system logs -> module status -> check data to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+-https://github.com/Luirbos/Automated-ELK-stack-deployment/blob/main/Ansible/filebeat-playbook.yml is the playbook copy it to /etc/ansible/files
+-Update the hosts file to make Ansible run the playbook on a specific machine.
+To specify which machine to install the ELK server on versus which to install Filebeat on, input the machine's private IP address under filebeat or ELK
+- To check if the ELK server is running, navigate to http://[kibana public IP]:5601
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+Specific commands the user will need to run to download the playbook, update the files, etc. can be found here:
+
