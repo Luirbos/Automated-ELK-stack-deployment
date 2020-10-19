@@ -24,8 +24,8 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 -Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
--Load balancers protect the Availability in the CIA triad the advantage of a Jump Box is that it creates a fan to make security easier.
-
+-Load balancers protect the Availability of webservers in the CIA triad.
+-The advantage of a Jump Box is that it limits access to machines to be only thorugh the jumpbox
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system data.
 -Filebeat watches for changes to the files
 -Metric beat records metric data
@@ -39,13 +39,14 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web 1    |DVWA Server| 10.0.0.5   | Linux            |
 | Web 2    |DVWA Server| 10.0.0.6   | Linux            |
 | Web 3    |DVWA Server| 10.0.0.8   | Linux            |
+| ELK      |ELK Server | 10.1.0.4   | Linux            |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-(my personal IP address)
+(my public IP address)
 
 Machines within the network can only be accessed by the Jumpbox.
 The ELK VM can only be accessed through the Jumpbox, it's private IP address is 10.0.0.4
@@ -58,6 +59,7 @@ A summary of the access policies in place can be found in the table below.
 |  Web 1   |     no              |                      |
 |  Web 2   |     no              |                      |
 |  Web 3   |     no              |                      |
+|  ELK     |     no              |                      |
 
 ### Elk Configuration
 
@@ -77,9 +79,9 @@ https://github.com/Luirbos/Automated-ELK-stack-deployment/blob/main/Diagrams/doc
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-10.0.0.5
-10.0.0.6
-10.0.0.8
+Web 1: 10.0.0.5
+Web 2: 10.0.0.6
+Web 3: 10.0.0.8
 
 We have installed the following Beats on these machines:
 Filebeat and Metricbeat
