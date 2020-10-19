@@ -124,4 +124,5 @@ To specify which machine to install the ELK server on versus which to install Fi
 - To check if the ELK server is running, navigate to http://[kibana public IP]:5601
 
 Specific commands the user will need to run to download the playbook, update the files, etc. can be found here:
+https://github.com/Luirbos/Automated-ELK-stack-deployment/blob/main/Linux/commands.txt
 
