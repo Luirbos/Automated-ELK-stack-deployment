@@ -1,0 +1,40 @@
+
+##### creating ansible container #####
+
+ssh jumpbox@(jumpbox IP)
+sudo su
+apt-get docker.io
+# go to hub.docker.com for docker image
+docker run -ti username/container:image bash
+docker container list -a
+docker start [container name]
+docker ps
+docker attach [container name]
+
+##### creating and running playbooks ######
+
+cd /etc/ansible
+nano pentest.yml
+#copy and paste the file from github here
+#change host name
+ansible-playbook pentest.yml
+
+##### installing ELK #####
+
+#add your new VM to the ansible hosts file under "ELK"
+nano /etc/ansible/hosts/
+[VM's internal IP] ansible_python_interpreter=/usr/bin/python3
+# create a new ansible playbook for the ELK machine
+nano /etc/ansible/install-ELK-playbook.yml
+#paste the contents of the file from github
+run:
+ansible-playbook install-ELK-playbook.yml
+#ensure elk is running by being ssh'd into elk VM
+ssh username@[elk-VM-private-IP]
+docker ps
+#this shows containers that are running
+#verify that ELK stack server is up by visiting it in your browser
+http://[your.VM.IP]:5601/app/kibana
+
+##### Installing filebeat #####
+
