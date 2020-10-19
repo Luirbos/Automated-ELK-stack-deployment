@@ -94,6 +94,22 @@ meticbeat monitors metric data and statistics.
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
+To obtain the filebeat-config.yml fil, run curl https://gist.githubusercontent.com/slape/5cc350109583af6cbe577bbcc0710c93/raw/eca603b72586fbe148c11f9c87bf96a63cb25760/Filebeat > /etc/ansible/files/filebeat-config.yml
+update the filebeat-config.yml file to include:
+
+output.elasticsearch:
+hosts: ["10.1.0.4:9200"]
+username: "elastic"
+password: "changeme"
+
+[on line 1106]
+and:
+
+setup.kibana:
+host: "10.1.0.4:5601"
+
+[on line 1806]
+
 - Copy the filebeat-playbook.yml file to /etc/ansible/.
 - Update the hosts file to include:
 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
